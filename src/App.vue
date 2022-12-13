@@ -22,12 +22,7 @@ export default {
       },
       data(){
           return{
-              todos:[
-                  {id:"001", title:"水浒传", isCheck:true},
-                  {id:"002", title:"红楼梦", isCheck:false},
-                  {id:"003", title:"三国演义", isCheck:false},
-                  {id:"004", title:"西游记", isCheck:true},
-              ]
+              todos:JSON.parse(localStorage.getItem("todos"))
           }
       },
     methods:{
@@ -57,6 +52,14 @@ export default {
               })
           }
 
+    },
+    watch:{
+        todos:{
+          deep:true,
+          handler(value){
+             localStorage.setItem("todos",JSON.stringify(value))
+          }
+        }
     }
 }
 </script>
