@@ -5,7 +5,8 @@
                 :key="todo.id"
                 :todo="todo"
                 :isCheckChangeApp="isCheckChangeApp"
-                :deleteItemApp="deleteItemApp">
+                :deleteItemApp="deleteItemApp"
+                :editItemApp="editItemApp">
 
         </todo-item>
   </ul>
@@ -17,7 +18,7 @@
     export default {
         name: "TodoList",
         components: {TodoItem},
-        props:["todos","isCheckChangeApp","deleteItemApp"]
+        props:["todos","isCheckChangeApp","deleteItemApp","editItemApp"]
     }
 </script>
 

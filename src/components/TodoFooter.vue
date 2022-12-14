@@ -75,11 +75,7 @@
   border-radius: 4px;
 }
 
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
-}
+
 
 .btn-danger:hover {
   color: #fff;

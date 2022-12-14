@@ -1,26 +1,41 @@
 <template>
         <li>
           <label>
-            <input type="checkbox" :checked="todo.isCheck" @change="isCheckChange"/>
-            <span>{{todo.title}}</span>
+            <input type="checkbox" :checked="todo.isCheck" @change="isCheckChange(todo.id)"/>
+            <span v-show="!todo.isEdit">{{todo.title}}</span>
+            <input :value="todo.title" v-show="todo.isEdit" @blur="handleEdit(todo, $event)" ref="jiaodian">
           </label>
-          <button class="btn btn-danger" @click="deleteItem">删除</button>
+          <button class="btn btn-danger" @click="deleteItem(todo.id)">删除</button>
+          <button class="btn btn-edit" @click="editItem(todo)">编辑</button>
+
         </li>
 </template>
 
 <script>
     export default {
         name: "TodoItem",
-        props:["todo","isCheckChangeApp", "deleteItemApp"],
+        props:["todo","isCheckChangeApp", "deleteItemApp","editItemApp"],
         methods:{
-            isCheckChange(){
-                this.isCheckChangeApp(this.todo.id)
+            isCheckChange(id){
+                this.isCheckChangeApp(id)
             },
-            deleteItem(){
+            deleteItem(id){
                 if(confirm("删除吗？")){
-                    this.deleteItemApp(this.todo.id)
+                    this.deleteItemApp(id)
                 }
             },
+          editItem(todo){
+              todo.isEdit = true
+            // 等节点更新完成之后再执行
+              this.$nextTick(()=>{
+                  this.$refs.jiaodian.focus()
+              })
+          },
+          handleEdit(todo,e){
+              this.editItemApp(todo.id, e.target.value)
+              todo.isEdit = false
+          }
+
         }
     }
 </script>

@@ -3,7 +3,13 @@
   <div class="todo-container">
     <div class="todo-wrap">
         <TodoHeader :addtodo="addtodo"></TodoHeader>
-        <TodoList :todos="todos" :isCheckChangeApp="isCheckChangeApp" :deleteItemApp="deleteItemApp"></TodoList>
+        <TodoList :todos="todos"
+                  :isCheckChangeApp="isCheckChangeApp"
+                  :deleteItemApp="deleteItemApp"
+                  :editItemApp="editItemApp"
+        >
+
+        </TodoList>
         <TodoFooter :todos="todos" :clickAllApp="clickAllApp" :clearDoneApp="clearDoneApp"></TodoFooter>
     </div>
   </div>
@@ -50,6 +56,17 @@ export default {
               this.todos = this.todos.filter( (todo) => {
                   return !todo.isCheck
               })
+          },
+          editItemApp(id, value){
+            this.todos.forEach((todo) => {
+              if(todo.id === id){
+                if(value.trim() === ""){
+                  alert("不能为空")
+                  return
+                }
+                todo.title = value
+              }
+            })
           }
 
     },
@@ -78,6 +95,18 @@ body {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+
+.btn-edit {
+  color: #fff;
+  background-color: skyblue;
+  border: 1px solid skyblue;
+  margin-right: 10px;
 }
 
 </style>
