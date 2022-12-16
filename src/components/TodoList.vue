@@ -7,7 +7,6 @@
                 :isCheckChangeApp="isCheckChangeApp"
                 :deleteItemApp="deleteItemApp"
                 :editItemApp="editItemApp">
-
         </todo-item>
   </ul>
 

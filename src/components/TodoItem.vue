@@ -1,4 +1,10 @@
 <template>
+  <transition
+      appear
+      name="animate__animated animate__bounce"
+      enter-active-class="animate__slideInUp"
+      leave-active-class="animate__zoomOut"
+  >
         <li>
           <label>
             <input type="checkbox" :checked="todo.isCheck" @change="isCheckChange(todo.id)"/>
@@ -7,11 +13,12 @@
           </label>
           <button class="btn btn-danger" @click="deleteItem(todo.id)">删除</button>
           <button class="btn btn-edit" @click="editItem(todo)">编辑</button>
-
         </li>
+  </transition>
 </template>
 
 <script>
+import 'animate.css'
     export default {
         name: "TodoItem",
         props:["todo","isCheckChangeApp", "deleteItemApp","editItemApp"],
